@@ -18,6 +18,18 @@ RUTA_MODELO = "modelo_final_anemia.pkl"
 # el resto). Por eso el formulario pide todas las variables originales.
 VARIABLES_NOMINALES_DESCARTADAS = []
 
+# Codificación estándar de departamentos usada por el INEI en la variable
+# HV024 de ENDES (orden alfabético, códigos 1-25). Verifica contra tu
+# diccionario de variables ENDES antes de la entrega, por si tu versión
+# usa una codificación distinta.
+REGIONES_INEI = {
+    "Amazonas": 1, "Áncash": 2, "Apurímac": 3, "Arequipa": 4, "Ayacucho": 5,
+    "Cajamarca": 6, "Callao": 7, "Cusco": 8, "Huancavelica": 9, "Huánuco": 10,
+    "Ica": 11, "Junín": 12, "La Libertad": 13, "Lambayeque": 14, "Lima": 15,
+    "Loreto": 16, "Madre de Dios": 17, "Moquegua": 18, "Pasco": 19, "Piura": 20,
+    "Puno": 21, "San Martín": 22, "Tacna": 23, "Tumbes": 24, "Ucayali": 25,
+}
+
 # --------------------------------------------------------------------------- #
 st.set_page_config(page_title="Predicción de anemia infantil", page_icon="🩸",
                    layout="centered")
@@ -110,7 +122,8 @@ with st.form("formulario_nino"):
     st.subheader("🏠 Datos del hogar")
     c1, c2, c3 = st.columns(3)
     with c1:
-        region = st.number_input("Región (código INEI)", 1, 25, 15)
+        region_nombre = st.selectbox("Región", list(REGIONES_INEI.keys()), index=14)  # Lima por defecto
+        region = REGIONES_INEI[region_nombre]
         area = st.selectbox("Área", ["Urbano", "Rural"])
         altitud = st.number_input("Altitud (msnm)", 0, 5500, 200)
     with c2:
