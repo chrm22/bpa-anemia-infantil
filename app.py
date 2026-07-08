@@ -1,12 +1,6 @@
 """
 App de predicción de riesgo de anemia infantil — ENDES 2024
 Grupo 2 · Business Predictive Analytics (1ASI0709)
-
-Carga el artefacto 'modelo_final_anemia.pkl' (preprocesador + Random Forest +
-umbral ajustado) y predice el riesgo de anemia de un niño a partir de datos
-crudos ingresados en un formulario. Las variables derivadas
-(ratio_peso_talla, ratio_peso_edad, estado_nutricional) se recrean aquí con la
-misma lógica del notebook, antes de pasar los datos al preprocesador.
 """
 
 import numpy as np
